@@ -13,10 +13,10 @@ app.get('/survey', function(req, res) {
 });
 
 // A default, catch-all route that leads to home.html which displays the home page.
-// ********** NEEDS UPDATE **********
-// Currently only catching '/' directory. Needs to catch any directly following '/' other than 'survey'
-app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname, "../public/home.html"));
+app.get('/:name?', function(req, res) {
+	if (req.params.name !== 'survey') {
+		res.sendFile(path.join(__dirname, "../public/home.html"));
+	};
 });
 
 // Listening from port 8080

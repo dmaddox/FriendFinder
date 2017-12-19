@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
-	<meta charset="UTF-8">
-	<title>Friend Finder: Survey QUESTIONS</title>
-	<!-- Jquery CDN -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- Reset CSS -->
-	<link rel="stylesheet" type="text/css" href="assets/reset.css">
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" type="text/css" href="assets/style.css">
+  <meta charset="UTF-8">
+  <title>FriendFinder</title>
+
+  <!-- Reset CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/reset.css">
+  
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- Font Awesome Glyphicons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <!-- Chosen -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/style.css">
+
 </head>
+
+
 <body>
 <div class="container">
 	<h2>Survey Questions</h2>
@@ -160,15 +175,35 @@
 
 	    <hr>
 	    <footer class="footer">
-	      <!-- <div class="container">
-	        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
-	      </div> -->
+	      <div class="container">
+	        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/dmaddox/FriendFinder">GitHub Repo</a></p>
+	      </div>
 	    </footer>
 
-	  </div>
+</div><!--  End Container -->
 	
-</body>
-</html>
+	
+	<!-- Modal -->
+	<div id="results-modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h2 class="modal-title"><strong>Best Match</strong></h2>
+	      </div>
+	      <div class="modal-body">
+	        <h2 id="match-name"></h2>
+	        <img id="match-img" src="" alt="">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 <script type="text/javascript">
@@ -205,7 +240,15 @@
       }).done(function(data) {
       	  // If a table is available... tell user they are booked.
       	  if (data) {
-      	    alert("Your friend is " + data.name);
+      	    // alert("Your friend is " + data.name);
+
+      	    // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+      	    $("#match-name").text(data.name);
+      	    $("#match-img").attr("src", data.photo);
+
+      	    // Show the modal with the best match
+      	    $("#results-modal").modal("toggle");
+
       	  }
 
       	  // If a table is available... tell user they on the waiting list.
@@ -231,3 +274,6 @@
       });
 
 </script>
+
+</body>
+</html>

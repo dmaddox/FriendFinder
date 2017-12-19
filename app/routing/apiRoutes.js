@@ -20,15 +20,10 @@ module.exports = {
 			// push the newFriend info to the friends array
 			friends.push(newFriend);
 			// Compatibility logic
-			// *****NEEDED HERE******
-			console.log(".....Matching Logic.....");
-			console.log(friends[friends.length - 1].scores);
-
 			// get the newFriend's total score
 			var newFriendSum = newFriend.scores.reduce(function (total, amount) {
 			    return total + amount
 			});
-			console.log("The total is " + newFriendSum);
 
 			// compare it to the total score of each other friend
 			var friendScores = [];
@@ -38,19 +33,11 @@ module.exports = {
 				});
 				var difference = Math.abs(newFriendSum - friendSum);
 				friendScores.push(difference);
-			}
-			console.log(friendScores);
+			};
 
 			var min = Math.min.apply(null, friendScores)
 
-			console.log("The minimun number is: " + min);
 			var z = friendScores.indexOf(min);
-			console.log(z);
-			console.log(friends[z].name);
-			console.log(friends[z].photo);
-			
-
-			// **********************
 			// respond w/ the matching friend 
 			res.json(friends[z]);
 		});

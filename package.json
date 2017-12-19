@@ -4,6 +4,7 @@
   "description": "A fullstack dating app that matches users based on analyzing similarities in their responses to a survey.",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

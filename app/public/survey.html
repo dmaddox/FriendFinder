@@ -186,13 +186,13 @@
       // loop through #q#'s
       $(".chosen-select").each(function(index,item){
       	  // push the score to the scores array
-          scores.push($(this).val().trim());
+          scores.push(parseInt($(this).val().trim()));
       });
 
       // Here we grab the form elements
       var newFriend = {
-        friendName: $("#name").val().trim(),
-        friendPhoto: $("#photo").val().trim(),
+        name: $("#name").val().trim(),
+        photo: $("#photo").val().trim(),
         scores: scores
       };
 
@@ -205,7 +205,7 @@
       }).done(function(data) {
       	  // If a table is available... tell user they are booked.
       	  if (data) {
-      	    alert("looking for your friend now!");
+      	    alert("Your friend is " + data.name);
       	  }
 
       	  // If a table is available... tell user they on the waiting list.

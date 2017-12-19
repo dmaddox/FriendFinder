@@ -2,14 +2,15 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-var path = require("path");
-var htmlRoutes = require("./app/routing/htmlRoutes");
 
 // Sets up the Express App
 // =============================================================
 var app = express();
 var PORT = process.env.PORT || 3003;
 
+// Sets up the Express app to handle data parsing
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
 // =============================================================
@@ -18,17 +19,9 @@ app.listen(PORT, function() {
 });
 
 // Routing
+// =============================================================
+	// API
+	require("./app/routing/apiRoutes").getFriends(app);
+	require("./app/routing/apiRoutes").postResults(app);
 	// HTML
-	htmlRoutes.survey(app);
-	htmlRoutes.home(app);
-
-
-
-///study THIS IS RECORDED in study hall!
-
-
-// apiRoutes(app)
-
-
-// //mult routes
-// apiRoutes.apiRoutes1(app)
+	require("./app/routing/htmlRoutes")(app);
